@@ -11,7 +11,6 @@ if [[ $# >0 && $1 -eq '--help' ]]; then
 	echo $INFO
 else
     u="$USER"
-	# find . -type f -gname -print
-    echo $u
+	# find . -type f -gname -print    
     find . -type f -print
 fi
