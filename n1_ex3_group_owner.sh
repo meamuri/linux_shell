@@ -6,11 +6,12 @@ USAGE="Usage: n1_ex3_group_owner [--help]"
 INFO="Найти в директории файлы, группа-владелец которых содержит \n
 текущего пользователя и являются обычными файлами"
 
-if [[ $# >0 && $1 -eq '--help' ]]; then
+if [[ $# > 0 && $1 -eq '--help' ]]; then
 	echo $USAGE
 	echo $INFO
-else
-    u="$USER"
-	# find . -type f -gname -print    
-    find . -type f -print
-fi
+	exit 0
+fi 
+
+u="$USER"
+# find . -type f -gname -print    
+find . -type f -print
