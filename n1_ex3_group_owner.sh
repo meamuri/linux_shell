@@ -14,4 +14,4 @@ fi
 
 u="$USER"
 # find . -type f -gname -print    
-find . -type f -print
+/usr/bin/find . -type f -print
