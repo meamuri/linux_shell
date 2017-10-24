@@ -12,8 +12,6 @@ if [[ $# > 1 && $1 -eq '--help' ]]; then
 	exit 0
 fi 
 
-CURR_USER="$USER"
-THE_GROUP=$(groups $CURR_USER)
-echo $THE_GROUP
-# find . -type f -gname -print    
-/usr/bin/find . -type f -print
+COMMAND_PART=`groups | sed 's/ / -or -group /g'`
+echo $COMMAND_PART
+/usr/bin/find . -type f -group $COMMAND_PART
