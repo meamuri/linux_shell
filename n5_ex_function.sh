@@ -8,7 +8,10 @@
 
 USAGE="Usage: $0 n a d
 
-Calculating the factorial. Result is n!"
+Calculating the arithmetic progression. Result is 
+
+a_n = a_1 + (n - 1)*d
+"
 
 function arithmetic_progression {
     TMP=$2
@@ -19,7 +22,7 @@ function arithmetic_progression {
     echo $TMP
 }
 
-if [ "$1" == "-h" ] || [[ $# != 1 ]]; then
+if [ "$1" == "-h" ] || [[ $# != 3 ]]; then
     echo "$USAGE"
     exit 1
 fi
