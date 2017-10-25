@@ -7,4 +7,4 @@ last -t "-1 day" '+%Y-%m-%d' | awk '{print $1;}' | sort -r | uniq
 
 echo "   "
 
-last | grep "`date -d "-2 day" | awk '{print $1 " " $2 " " $3 }'`"
+last | grep "`date -d "-1 day" | awk '{print $1 " " $2 " " $3 }'`"
