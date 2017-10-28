@@ -14,12 +14,7 @@ a_n = a_1 + (n - 1)*d
 "
 
 function arithmetic_progression {
-    TMP=$2
-    for i in `seq 1 $1`; do
-        TMP=$(($TMP + $3))
-    done
-
-    echo $TMP
+    echo $(($2 + $1*$3))
 }
 
 if [ "$1" == "-h" ] || [[ $# != 3 ]]; then
