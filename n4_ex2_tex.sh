@@ -7,3 +7,24 @@
 # быть написаны прямо в тексте шелл-скрипта либо лежать отдельными файлами и
 # дергаться из шелл-скрипта, совершенно не принципиально. Файл Latex пишется из
 # AWK.
+
+HEADER="
+\\documentclass{article}
+\\usepackage[english]{babel}
+\\usepackage{longtable}
+\\begin{document}
+\\begin{longtable}{ |l|l| }
+\\hline 
+\\multicolumn{1}{|c|}{Depth} &
+\\multicolumn{1}{c|}{PID} \\\\
+\\endfirsthead
+\\hline
+\\endhead
+\\hline
+\\endfoot
+"
+
+TAIL="
+\\end{longtable}
+\\end{document}
+"
