@@ -13,5 +13,4 @@ if [[ $# > 1 && $1 -eq '--help' ]]; then
 fi 
 
 COMMAND_PART=`groups | sed 's/ / -or -group /g'`
-echo $COMMAND_PART
 /usr/bin/find . -type f -group $COMMAND_PART
