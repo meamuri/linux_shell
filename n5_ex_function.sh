@@ -6,7 +6,8 @@
 # передаче этого ключа или передаче некорректных параметров должно выводиться
 # сообщение о том, что принимает этот скрипт в качестве параметров.
 
-USAGE="Usage: $0 n a d
+USAGE="
+Usage: $0 n a d
 
 Calculating the arithmetic progression. Result is 
 
