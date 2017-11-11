@@ -30,13 +30,19 @@ if [ "$1" == "-h" ] || [[ $# != 0 ]]; then
     exit 0
 fi
 
-OUT="res.pdf"
-INFO=$(cat /etc/group | grep "[a-z,]\+$" -o | tr ',' '\n' | sort | uniq -c)
+AWK_CODE='{ 
+  arr[NF] = $0  
+  for (k in arr){
+    printf arr[k]
+  }  
+}'
+
+INFO=$(cat /etc/group | grep "[a-z,]\+$" -o | tr ',' '\n'| sort | uniq -c)
 TMP=`mktemp`
 echo "$HEADER" > "$TMP"
-awk -v body="$INFO" 'BEGIN{printf body}' >> "$TMP"
+echo "$INFO" | awk "$AWK_CODE" >> "$TMP"
 echo "$TAIL" >> "$TMP"
 pdflatex "$TMP" > /dev/null
 rm "$TMP"
 rm tmp.log tmp.aux
-mv "tmp.pdf" "$OUT"
+mv "tmp.pdf" "res.pdf"
