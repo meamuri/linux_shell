@@ -31,10 +31,7 @@ if [ "$1" == "-h" ] || [[ $# != 0 ]]; then
 fi
 
 AWK_CODE='{ 
-  arr[NF] = $0  
-  for (k in arr){
-    printf arr[k]
-  }  
+  print $0 "\n"
 }'
 
 INFO=$(cat /etc/group | grep "[a-z,]\+$" -o | tr ',' '\n'| sort | uniq -c)
