@@ -20,8 +20,8 @@ HEADER="
 \\begin{document}
 \\begin{longtable}{ |l|l| }
 \\hline 
-\\multicolumn{1}{|c|}{Depth} &
-\\multicolumn{1}{c|}{PID} \\\\
+\\multicolumn{1}{|c|}{User} &
+\\multicolumn{1}{c|}{Count} \\\\
 \\endfirsthead
 \\hline
 \\endhead
@@ -52,19 +52,6 @@ TAIL="
 \\end{document}
 "
 
-function make_pdf {
-    IN="$1"
-    OUT="$2"
-    TMP=`mktemp`
-    echo "$HEADER" > "$TMP"
-    awk "$AWK_CODE" "$IN" >> "$TMP"
-    echo "$TAIL" >> "$TMP"
-    pdflatex "$TMP" > /dev/null
-    rm "$TMP"
-    rm tmp.log tmp.aux
-    mv "tmp.pdf" "$OUT"
-}
-
 
 if [ "$1" == "-h" ] || [[ $# != 1 ]]; then
     echo "$USAGE"
@@ -73,4 +60,12 @@ fi
 
 OUT="res.pdf"
 INFO=$(cat /etc/group | grep "[a-z,]\+$" -o | tr ',' '\n' | sort | uniq -c)
-make_pdf $INFO $OUT
+echo $INFO
+TMP=`mktemp`
+echo "$HEADER" > "$TMP"
+# awk "$AWK_CODE" "$IN" >> "$TMP"
+echo "$TAIL" >> "$TMP"
+pdflatex "$TMP" > /dev/null
+rm "$TMP"
+rm tmp.log tmp.aux
+mv "tmp.pdf" "$OUT"
