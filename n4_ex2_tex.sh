@@ -13,32 +13,28 @@ Usage: n4_ex2_tex
 Task: Вывести список пользователей, присутствующих в файле /etc/group, список уникален, 
 отсортирован, для каждого вывести количество повторений"
 
-HEADER="
-\\documentclass{article}
-\\usepackage[english]{babel}
-\\usepackage{longtable}
-\\begin{document}
-"
-
-TAIL="
-\\end{document}
-"
-
-
 if [ "$1" == "-h" ] || [[ $# != 0 ]]; then
     echo "$USAGE"
     exit 0
 fi
 
-AWK_CODE='{ 
+AWK_CODE='
+BEGIN{
+  printf "\\documentclass{article}"
+  printf "\\usepackage[english]{babel}"
+  printf "\\usepackage{longtable}"
+  printf "\\begin{document}"
+}
+{ 
   print $0 "\n"
+}
+END{
+  printf "\\end{document}"
 }'
 
 INFO=$(cat /etc/group | grep "[a-z,]\+$" -o | tr ',' '\n'| sort | uniq -c)
 TMP=`mktemp`
-echo "$HEADER" > "$TMP"
 echo "$INFO" | awk "$AWK_CODE" >> "$TMP"
-echo "$TAIL" >> "$TMP"
 pdflatex "$TMP" > /dev/null
 rm "$TMP"
 rm tmp.log tmp.aux
